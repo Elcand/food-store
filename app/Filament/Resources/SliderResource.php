@@ -6,6 +6,9 @@ use App\Filament\Resources\SliderResource\Pages;
 use App\Filament\Resources\SliderResource\RelationManagers;
 use App\Models\Slider;
 use Filament\Forms;
+use Filament\Forms\Components\Card;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -25,7 +28,18 @@ class SliderResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Card::make()
+                    ->schema([
+                        FileUpload::make('image')
+                            ->label('Slider Image')
+                            ->placeholder('Slider Image')
+                            ->required(),
+
+                        TextInput::make('link')
+                            ->label('Link')
+                            ->placeholder('Link')
+                            ->required(),
+                    ])
             ]);
     }
 
