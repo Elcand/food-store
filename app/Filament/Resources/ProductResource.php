@@ -15,6 +15,8 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\TextInputColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -74,7 +76,22 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                //
+                ImageColumn::make('image')
+                    ->circular(),
+
+                TextColumn::make('title')
+                    ->searchable(),
+
+                TextColumn::make('category.name')
+                    ->searchable(),
+
+                TextColumn::make('price')
+                    ->numeric(decimalPlaces: 0)
+                    ->money('IDR', locale: 'id'),
+
+                TextColumn::make('description')
+                    ->html()
+                    ->limit(50)
             ])
             ->filters([
                 //
