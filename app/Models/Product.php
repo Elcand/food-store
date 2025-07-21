@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Product extends Model
 {
@@ -15,6 +16,16 @@ class Product extends Model
         'price',
         'weight'
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::saving(function ($product) {
+            if (empty($product->slug)) {
+                $product->slug = Str::slug($product->name);
+            }
+        });
+    }
 
     public function category()
     {
