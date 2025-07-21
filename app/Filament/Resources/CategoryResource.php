@@ -25,7 +25,18 @@ class CategoryResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\Card::make()
+                    ->schema([
+                        Forms\Components\FileUpload::make('image')
+                            ->label('Category Image')
+                            ->placeholder('Category Image')
+                            ->required(),
+
+                        Forms\Components\TextInput::make('name')
+                            ->label('Category Name')
+                            ->placeholder('Category Name')
+                            ->required(),
+                    ])
             ]);
     }
 
