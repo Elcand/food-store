@@ -25,6 +25,8 @@
 <body>
     {{-- render content --}}
     {{ $slot }}
+
+    <x-menus.bottom />
 </body>
 
 </html>
