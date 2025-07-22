@@ -74,6 +74,7 @@ class TransactionResource extends Resource
     {
         return [
             'index' => Pages\ListTransactions::route('/'),
+            'view'  => Pages\ViewTransaction::route('/{record}'),
         ];
     }
 
