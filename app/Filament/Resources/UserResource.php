@@ -6,6 +6,8 @@ use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
 use Filament\Forms;
+use Filament\Forms\Components\Card;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -25,7 +27,25 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Card::make()
+                    ->schema([
+                        TextInput::make('name')
+                            ->label('Name')
+                            ->placeholder('Name')
+                            ->required(),
+
+                        TextInput::make('email')
+                            ->label('Email')
+                            ->placeholder('Email')
+                            ->unique(ignorable: fn($record) => $record),
+
+                        TextInput::make('password')
+                            ->label('Password')
+                            ->placeholder('Password')
+                            ->dehydrateStateUsing(fn($state) => $state ? bcrypt($state) : null)
+                            ->dehydrated(fn($state) => filled($state))
+                            ->password(),
+                    ])
             ]);
     }
 
