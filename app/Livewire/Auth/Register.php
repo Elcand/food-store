@@ -21,6 +21,13 @@ class Register extends Component
         ];
     }
 
+    public function mount()
+    {
+        if (auth()->guard('customer')->check()) {
+            return $this->redirect('/account/my-orders', navigate: true);
+        }
+    }
+
     public function register()
     {
         $this->validate();

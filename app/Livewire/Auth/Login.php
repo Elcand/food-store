@@ -17,6 +17,15 @@ class Login extends Component
         ];
     }
 
+    public function mount()
+    {
+        if (auth()->guard('customer')->check()) {
+            return $this->redirect('/account/my-orders', navigate: true);
+        }
+    }
+
+
+
     public function login()
     {
         $this->validate();
@@ -31,7 +40,7 @@ class Login extends Component
         }
 
         session()->flash('error', 'Periksa email dan password Anda.');
-        
+
         return $this->redirect('/login', navigate: true);
     }
 
