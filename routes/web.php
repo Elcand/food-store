@@ -19,3 +19,5 @@ Route::middleware('auth:customer')->group(function () {
         Route::get('/password', Account\Password\Index::class)->name('account.password');
     });
 });
+
+Route::get('/', Web\Home\Index::class)->name('home');
