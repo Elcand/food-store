@@ -27,22 +27,21 @@
     {{ $slot }}
 
     <x-menus.bottom />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    @livewireScripts
+    <script>
+        @if (session()->has('success'))
+            toastr.success('{{ session('success') }}', 'BERHASIL!');
+        @elseif (session()->has('info'))
+            toastr.info('{{ session('info') }}', 'INFO!');
+        @elseif (session()->has('warning'))
+            toastr.warning('{{ session('warning') }}', 'PERINGATAN!');
+        @elseif (session()->has('error'))
+            toastr.error('{{ session('error') }}', 'GAGAL!');
+        @endif
+    </script>
 </body>
 
 </html>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-@livewireScripts
-<script>
-    @if (session()->has('success'))
-        toastr.success('{{ session('success') }}', 'BERHASIL!');
-    @elseif (session()->has('info'))
-        toastr.info('{{ session('info') }}', 'INFO!');
-    @elseif (session()->has('warning'))
-        toastr.warning('{{ session('warning') }}', 'PERINGATAN!');
-    @elseif (session()->has('error'))
-        toastr.error('{{ session('error') }}', 'GAGAL!');
-    @endif
-</script>

@@ -146,6 +146,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <livewire:account.my-orders.modal-rating :item="$item" :transaction="$transaction" />
                             </div>
                         @endforeach
                     </div>
