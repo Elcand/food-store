@@ -34,8 +34,9 @@
                                     <td>:</td>
                                     <td>
                                         @if ($transaction->status == 'pending')
-                                            <button class="btn btn-sm btn-warning rounded border-0">
-                                                BAYAR SEKARANG
+                                            <button onclick="payment('{{ $transaction->snap_token }}')"
+                                                class="btn btn-sm btn-warning rounded border-0">
+                                                Pay Now!
                                             </button>
                                         @elseif($transaction->status == 'success')
                                             <button class="btn btn-sm btn-success rounded border-0">
@@ -153,3 +154,21 @@
         </div>
     </div>
 </div>
+
+<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}">
+</script>
+<script>
+    const payment = async (snap_token) => {
+        window.snap.pay(snap_token, {
+            onSuccess: function() {
+                window.location = '/account/my-orders' + snap_token
+            },
+            onPending: function() {
+                window.location = '/account/my-orders' + snap_token
+            },
+            onError: function() {
+                window.location = '/account/my-orders' + snap_token
+            },
+        })
+    };
+</script>
