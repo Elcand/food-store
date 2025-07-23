@@ -21,7 +21,7 @@
                         <div class="input-group mb-3">
                             <input type="file" wire:model="image"
                                 class="form-control rounded @error('image') is-invalid @enderror" v-model="image"
-                                placeholder="Upload Image" >
+                                placeholder="Upload Image" onchange="previewImage">
                         </div>
                         @error('image')
                             <div class="alert alert-danger mt-2 rounded border-0">
