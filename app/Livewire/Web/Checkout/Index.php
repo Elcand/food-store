@@ -2,12 +2,19 @@
 
 namespace App\Livewire\Web\Checkout;
 
+use App\Models\Province;
 use Livewire\Component;
 
 class Index extends Component
 {
+    public $address;
+    public $province_id;
+
+
     public function render()
     {
-        return view('livewire.web.checkout.index');
+        $provinces = Province::query()->get();
+
+        return view('livewire.web.checkout.index', compact('provinces'));
     }
 }
