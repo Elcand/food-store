@@ -50,6 +50,14 @@
                             @endforeach
                         </select>
 
+                        <select class="form-select rounded mb-3" wire:model.live="city_id"
+                            wire:key="{{ $province_id }}">
+                            <option value="">-- Select City --</option>
+                            @foreach (\App\Models\City::where('province_id', $province_id)->get() as $city)
+                                <option value="{{ $city->id }}">{{ $city->name }}</option>
+                            @endforeach
+                        </select>
+
                         <div class="mb-3">
                             <textarea class="form-control rounded" wire:model.live="address" rows="3"
                                 placeholder="Address:  Jl. Kebon Jeruk No. 1, Jakarta Barat"></textarea>
