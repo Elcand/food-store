@@ -3,16 +3,17 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\CategoryResource\Pages;
-use App\Filament\Resources\CategoryResource\RelationManagers;
 use App\Models\Category;
 use Filament\Forms;
+use Filament\Forms\Components\Card;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
-use Filament\Resources\Components\Tab;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class CategoryResource extends Resource
 {
@@ -26,14 +27,14 @@ class CategoryResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Card::make()
+                Card::make()
                     ->schema([
-                        Forms\Components\FileUpload::make('image')
+                        FileUpload::make('image')
                             ->label('Category Image')
                             ->placeholder('Category Image')
                             ->required(),
 
-                        Forms\Components\TextInput::make('name')
+                        TextInput::make('name')
                             ->label('Category Name')
                             ->placeholder('Category Name')
                             ->required(),
@@ -45,8 +46,8 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('image')->circular(),
-                Tables\Columns\TextColumn::make('name')->searchable(),
+                ImageColumn::make('image')->circular(),
+                TextColumn::make('name')->searchable(),
             ])
             ->filters([
                 //
