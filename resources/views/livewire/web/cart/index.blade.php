@@ -64,6 +64,8 @@
                                                             class="quantity-field border-0 text-center w-25"
                                                             style="background: transparent;">
 
+                                                        <livewire:web.cart.btn-increment :cart_id="$cart->id"
+                                                            :product_id="$cart->product_id" />
                                                     </div>
                                                 </div>
                                             </div>
