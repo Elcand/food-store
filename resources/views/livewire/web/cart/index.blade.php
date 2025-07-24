@@ -58,6 +58,9 @@
                                                     <div
                                                         class="input-group justify-content-center align-items-center group-btn-qty">
 
+                                                        <livewire:web.cart.btn-decrement :cart_id="$cart->id"
+                                                            :product_id="$cart->product_id" :disabled="$cart->qty" />
+
                                                         <!-- qty cart -->
                                                         <input type="number" step="1" max="10"
                                                             value="{{ $cart->qty }}" name="quantity"
