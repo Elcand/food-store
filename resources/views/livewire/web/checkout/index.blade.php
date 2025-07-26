@@ -73,9 +73,11 @@
 
                     </div>
                 </div>
+
                 @if ($district_id)
                     <div class="card rounded shadow-sm border-0 mb-5">
                         <div class="card-body">
+
                             <h6>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                                     fill="currentColor" class="bi bi-truck mb-1" viewBox="0 0 16 16">
@@ -108,6 +110,7 @@
                                     wire:click="changeCourier('jne')">
                                 <label class="form-check-label" for="courier_jne">JNE</label>
                             </div>
+
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="courier" id="courier_pos"
                                     wire:click="changeCourier('pos')">
@@ -130,7 +133,7 @@
                             </div>
 
                             {{-- Cost options --}}
-                            <hr>
+
                             @if ($showCost)
                                 <hr>
                             @endif
@@ -149,9 +152,11 @@
                                     @endforeach
                                 </div>
                             @endif
+
                         </div>
                     </div>
                 @endif
+
             </div>
 
         </div>
@@ -167,25 +172,32 @@
                                 <h6 class="mb-0">Total</h6>
                             </div>
                             <div class="ms-auto">
-                                <h6 class="mb-0">Rp.{{ number_format($totalPrice) }}</h6>
+                                <h6 class="mb-0">Rp. {{ number_format($totalPrice) }}</h6>
                             </div>
                         </div>
                         <div class="d-flex justify-content-between mt-3">
                             <div>
-                                <h6 class="mb-0">Ongkis Kirim</h6>
+                                <h6 class="mb-0">Ongkos Kirim</h6>
                             </div>
                             <div class="ms-auto">
-                                <h6 class="mb-0">Rp.{{ number_format($selectCost) }}</h6>
+                                <h6 class="mb-0">Rp. {{ number_format($selectCost) }}</h6>
                             </div>
                         </div>
                         <div class="d-flex justify-content-between mt-3">
                             <div>
-                                <h6 class="mb-0">Grand Total</h6>
+                                <h5 class="fw-bold mb-0">Grand Total</h5>
                             </div>
                             <div class="ms-auto">
-                                <h6 class="mb-0">Rp.{{ number_format($grandTotal) }}</h6>
+                                <h5 class="fw-bold mb-0">Rp. {{ number_format($grandTotal) }}</h5>
                             </div>
                         </div>
+                        @if ($selectCost > 0)
+                            <hr style="border: dotted 1px #e92715;">
+
+                            <livewire:web.checkout.btn-checkout key="{{ now() }}" :province_id="$province_id"
+                                :city_id="$city_id" :district_id="$district_id" :address="$address" :grandTotal="$grandTotal"
+                                :totalWeight="$totalWeight" :selectCourier="$selectCourier" :selectService="$selectService" :selectCost="$selectCost" />
+                        @endif
                     </div>
                 </div>
             </div>
